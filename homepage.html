@@ -1,0 +1,1388 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PHOEM CHIN | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* ===== RESET & BASE ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #1a2530;
+            --gray: #7f8c8d;
+            --success: #2ecc71;
+            --error: #e74c3c;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--primary);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: width 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--secondary);
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
+        }
+
+        /* ===== HERO SECTION ===== */
+        .hero {
+            padding: 150px 0 100px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 5px solid var(--secondary);
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(52, 152, 219, 0.3);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            color: var(--light);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background-color: var(--secondary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--secondary);
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background-color: var(--secondary);
+        }
+
+        /* ===== SECTIONS COMMON ===== */
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* ===== ABOUT SECTION (Original Format) ===== */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            padding-left: 15px;
+        }
+
+        .about-text h3::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: var(--secondary);
+        }
+
+        .info-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .info-item strong {
+            color: var(--primary);
+            display: inline-block;
+            min-width: 180px;
+            font-weight: 600;
+        }
+
+        .info-item span {
+            color: var(--gray);
+        }
+
+        .timeline .info-item {
+            border-bottom: 1px dashed #eee;
+        }
+
+        /* ===== SKILLS SECTION ===== */
+        #skills {
+            background-color: #f5f7fa;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .skill-category h3 {
+            margin-bottom: 20px;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .skill-item {
+            margin-bottom: 20px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-level {
+            height: 100%;
+            background-color: var(--secondary);
+            border-radius: 5px;
+        }
+
+        /* ===== PORTFOLIO SECTION ===== */
+        .portfolio-filter {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-btn {
+            padding: 8px 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            color: var(--gray);
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background-color: var(--secondary);
+            color: white;
+            border-color: var(--secondary);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .portfolio-item {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .portfolio-img-container {
+            position: relative;
+            overflow: hidden;
+            height: 250px;
+        }
+
+        .portfolio-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.05);
+        }
+
+        .portfolio-img-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .portfolio-item:hover .portfolio-img-overlay {
+            opacity: 1;
+        }
+
+        .view-project-btn {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+        }
+
+        .view-project-btn:hover {
+            background: #2980b9;
+        }
+
+        .portfolio-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .portfolio-content p {
+            color: var(--gray);
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .portfolio-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background-color: #eef5ff;
+            color: var(--secondary);
+            padding: 5px 12px;
+            border-radius: 3px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ===== DEEPSCALP WEBSITE STYLING ===== */
+        .deepscalp-preview {
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2530 100%);
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .deepscalp-logo {
+            font-size: 3rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #3498db, #2980b9);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* ===== MODAL IMAGE VIEWER ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            overflow: auto;
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            max-width: 90%;
+            max-height: 80vh;
+            animation: zoomIn 0.3s;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .close-modal:hover {
+            color: var(--secondary);
+        }
+
+        /* ===== CONTACT SECTION ===== */
+        #contact {
+            background-color: #f5f7fa;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 50px;
+        }
+
+        .contact-info {
+            background-color: var(--primary);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .contact-icon {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            color: var(--secondary);
+        }
+
+        .contact-item h4 {
+            margin-bottom: 5px;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .hobbies-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .hobby-tag {
+            background: rgba(52, 152, 219, 0.2);
+            color: var(--secondary);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            outline: none;
+            border-color: var(--secondary);
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .message-status {
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            text-align: center;
+            display: none;
+            animation: slideIn 0.3s;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .message-status.success {
+            background-color: rgba(46, 204, 113, 0.1);
+            color: var(--success);
+            border: 1px solid var(--success);
+            display: block;
+        }
+
+        .message-status.error {
+            background-color: rgba(231, 76, 60, 0.1);
+            color: var(--error);
+            border: 1px solid var(--error);
+            display: block;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 50px 0 30px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-link:hover {
+            background-color: var(--secondary);
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* ===== RESPONSIVE DESIGN ===== */
+        @media (max-width: 992px) {
+
+            .about-content,
+            .skills-container,
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                flex-direction: column;
+                background-color: var(--primary);
+                text-align: center;
+                transition: left 0.3s;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                gap: 0;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            nav ul li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 120px 0 80px;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            section {
+                padding: 60px 0;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .info-item strong {
+                min-width: 150px;
+            }
+
+            .btn {
+                padding: 10px 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+
+            .info-item strong {
+                min-width: 120px;
+                display: block;
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Image Viewer Modal -->
+    <div id="imageModal" class="modal">
+        <span class="close-modal" id="closeModal">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Header & Navigation -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">PHOEM<span>CHIN</span></div>
+            <div class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </div>
+            <nav>
+                <ul id="navMenu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#skills">Skills</a></li>
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container hero-content">
+            <img src="Image/profile.jpg" alt="Phoem Chin" class="profile-img">
+            <h1>PHOEM CHIN</h1>
+            <p>Graphic Designer & Front-End Developer</p>
+            <p>Creating visually appealing designs and functional, user-friendly websites</p>
+            <div style="margin-top: 30px;">
+                <a href="#portfolio" class="btn">
+                    <i class="fas fa-briefcase"></i> View My Work
+                </a>
+                <a href="#contact" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> Contact Me
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section (Original Format) -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-content">
+                <!-- Left Column: Personal Info -->
+                <div class="about-text">
+                    <h3>Personal Background</h3>
+
+                    <div class="info-item">
+                        <strong>Name:</strong> <span>PHOEM CHIN</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Gender:</strong> <span>Male</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Nationality:</strong> <span>CAMBODIAN</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Place Of Birth:</strong> <span>Sangkat Lek 1, Sihanoukville</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Marital Status:</strong> <span>Single</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Current Address:</strong> <span>Khan Sen Sok, Phnom Penh</span>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Languages</h3>
+                    <div class="info-item">
+                        <strong>Khmer:</strong> <span>Native Speaker</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>English:</strong> <span>Fair in Speaking, Listening, and Writing</span>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Hobbies & Interests</h3>
+                    <div class="info-item">
+                        <strong>Sports:</strong> <span>Enjoy playing sport</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Reading:</strong> <span>Reading book</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Research:</strong> <span>Doing research</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Social:</strong> <span>Willing to participate with social activities and
+                            community</span>
+                    </div>
+                </div>
+
+                <!-- Right Column: Education & Skills -->
+                <div class="about-text">
+                    <h3>Academic Experience</h3>
+                    <div class="timeline">
+                        <div class="info-item">
+                            <strong>2025-2026:</strong> <span>Study at SETEC INSTITUTE (MIS Year II)</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>2024-2025:</strong> <span>Graduate Highschool</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>2022-2024:</strong> <span>Studied at LIFE SCHOOL</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>2019-2021:</strong> <span>Studied at LIFE Secondary School</span>
+                        </div>
+                        <div class="info-item">
+                            <strong>2013-2018:</strong> <span>Studied at LIFE Primary School</span>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Skills</h3>
+                    <div class="info-item">
+                        <strong>Communication</strong>
+                    </div>
+                    <div class="info-item">
+                        <strong>Graphic Design</strong>
+                    </div>
+                    <div class="info-item">
+                        <strong>Computer Skills:</strong> <span>Microsoft Word, Excel, PowerPoint</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Front-End Development:</strong> <span>HTML, CSS, JavaScript</span>
+                    </div>
+                    <div class="info-item">
+                        <strong>Responsive Web Design</strong>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Skills</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Graphic Design</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Branding & Identity</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Packaging Design</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Digital Design</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Web Development</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>HTML/CSS</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>JavaScript</span>
+                            <span>75%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Responsive Design</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio">
+        <div class="container">
+            <div class="section-title">
+                <h2>My Portfolio</h2>
+            </div>
+
+            <div class="portfolio-filter">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="graphic">Graphic Design</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <!-- Graphic Design Projects -->
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-img-container">
+                        <img src="Image/messig1.jpg" alt="PEPSI x MESSI" class="portfolio-img">
+                        <div class="portfolio-img-overlay">
+                            <button class="view-project-btn" onclick="viewImage('Image/messig1.jpg')">
+                                <i class="fas fa-expand"></i> View Full Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>PEPSI x MESSI – Brand Redesign</h3>
+                        <p>A conceptual rebranding of PEPSI featuring Lionel Messi and UNICEF collaboration. Includes
+                            can design, promotional materials, and brand consistency.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Packaging</span>
+                            <span class="tag">Concept Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-img-container">
+                        <img src="Image/cement.jpg" alt="INSEE Cement" class="portfolio-img">
+                        <div class="portfolio-img-overlay">
+                            <button class="view-project-btn" onclick="viewImage('Image/cement.jpg')">
+                                <i class="fas fa-expand"></i> View Full Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>INSEE Cement – Packaging Design</h3>
+                        <p>Designed packaging for INSEE Titanium Power and Diamond cement products. Compliant with
+                            American and Thai standards.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Packaging</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">Print Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-img-container">
+                        <img src="Image/namecardstarbuck.jpg" alt="STARBUCKS Business Card" class="portfolio-img">
+                        <div class="portfolio-img-overlay">
+                            <button class="view-project-btn" onclick="viewImage('Image/namecardstarbuck.jpg')">
+                                <i class="fas fa-expand"></i> View Full Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>STARBUCKS – Business Card Design</h3>
+                        <p>Created a professional business card design for a Starbucks executive concept. Features clean
+                            layout with contact details and branding.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Branding</span>
+                            <span class="tag">Print Design</span>
+                            <span class="tag">Corporate Identity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Deepscalp Website -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="deepscalp-preview">
+                        <div class="deepscalp-logo">DeepScalp</div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>DeepScalp Website</h3>
+                        <p>A fully functional and responsive website built with modern front-end technologies. Features
+                            clean UI, smooth navigation, and optimized performance.</p>
+
+                        <div class="portfolio-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Front-End</span>
+                            <span class="tag">Responsive Design</span>
+                            <span class="tag">UI/UX</span>
+                        </div>
+
+                        <div style="margin-top: 20px;">
+                            <a href="https://www.deepscalp.com/" target="_blank" class="btn">
+                                <i class="fas fa-external-link-alt"></i> Visit Live Website
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-img-container">
+                        <img src="Image/watchposter.png" alt="REVEN Watch" class="portfolio-img">
+                        <div class="portfolio-img-overlay">
+                            <button class="view-project-btn" onclick="viewImage('Image/watchposter.png')">
+                                <i class="fas fa-expand"></i> View Full Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>REVEN Watch – Luxury Brand Concept</h3>
+                        <p>Designed a "Black Panther Edition" watch concept for REVEN. Focus on luxury, precision, and
+                            modern aesthetics.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Luxury Branding</span>
+                            <span class="tag">Product Design</span>
+                            <span class="tag">Concept Art</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="graphic">
+                    <div class="portfolio-img-container">
+                        <img src="Image/vigor.png" alt="VIRGO POWER" class="portfolio-img">
+                        <div class="portfolio-img-overlay">
+                            <button class="view-project-btn" onclick="viewImage('Image/vigor.png')">
+                                <i class="fas fa-expand"></i> View Full Image
+                            </button>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>VIRGO POWER – Energy Drink Packaging</h3>
+                        <p>Designed vibrant and engaging packaging for VIRGO POWER energy drink. Emphasized vitaminized
+                            fruit juice and modern visuals.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Packaging</span>
+                            <span class="tag">Beverage Design</span>
+                            <span class="tag">Visual Identity</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Additional Web Projects -->
+                <div class="portfolio-item" data-category="web">
+                    <div class="portfolio-img-container">
+                        <div
+                            style="background: linear-gradient(135deg, #3498db, #2980b9); height: 100%; display: flex; align-items: center; justify-content: center;">
+                            <i class="fas fa-laptop-code" style="font-size: 4rem; color: white;"></i>
+                        </div>
+                    </div>
+                    <div class="portfolio-content">
+                        <h3>Portfolio Website</h3>
+                        <p>This responsive portfolio website showcasing my graphic design and web development projects.
+                            Built with HTML, CSS, and JavaScript.</p>
+                        <div class="portfolio-tags">
+                            <span class="tag">Web Development</span>
+                            <span class="tag">Responsive</span>
+                            <span class="tag">Interactive</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Me</h2>
+            </div>
+
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>chin069267531@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>069 267 531</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-id-card"></i>
+                        </div>
+                        <div>
+                            <h4>ID Card</h4>
+                            <p>130244183</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Phnom Penh, Cambodia</p>
+                        </div>
+                    </div>
+
+                    <h3 style="margin-top: 30px;">Hobbies & Interests</h3>
+                    <div class="hobbies-grid">
+                        <span class="hobby-tag">Sports</span>
+                        <span class="hobby-tag">Reading</span>
+                        <span class="hobby-tag">Research</span>
+                        <span class="hobby-tag">Design</span>
+                        <span class="hobby-tag">Technology</span>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <div id="messageStatus" class="message-status"></div>
+
+                    <form id="contactForm">
+                        <input type="text" name="from_name" placeholder="Your Name" required>
+                        <input type="email" name="from_email" placeholder="Your Email" required>
+                        <textarea name="message" placeholder="Your Message" required></textarea>
+                        <button type="submit" class="btn" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">PHOEM<span>CHIN</span></div>
+                <div class="social-links">
+                    <a href="https://www.facebook.com/otskoljinhes.44" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2024 PHOEM CHIN. All Rights Reserved. | Graphic Designer & Front-End Developer</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize EmailJS
+        (function () {
+            emailjs.init("9GXuc8OtM64UxTJyB");
+        })();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active')
+                ? '<i class="fas fa-times"></i>'
+                : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu on link click
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Portfolio Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filterValue = btn.getAttribute('data-filter');
+
+                portfolioItems.forEach(item => {
+                    if (filterValue === 'all' || item.getAttribute('data-category') === filterValue) {
+                        item.style.display = 'flex';
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Image Viewer Modal
+        const imageModal = document.getElementById('imageModal');
+        const modalImage = document.getElementById('modalImage');
+        const closeModal = document.getElementById('closeModal');
+
+        function viewImage(imageSrc) {
+            modalImage.src = imageSrc;
+            imageModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        closeModal.addEventListener('click', () => {
+            imageModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+
+        imageModal.addEventListener('click', (e) => {
+            if (e.target === imageModal) {
+                imageModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const messageStatus = document.getElementById('messageStatus');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const formData = new FormData(contactForm);
+            const data = Object.fromEntries(formData);
+
+            const originalText = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitBtn.disabled = true;
+
+            messageStatus.className = 'message-status';
+            messageStatus.style.display = 'none';
+
+            try {
+                await emailjs.send(
+                    'service_qepoo3k',
+                    'template_omu9rtf',
+                    {
+                        from_name: data.from_name,
+                        from_email: data.from_email,
+                        message: data.message,
+                        to_email: 'chin069267531@gmail.com',
+                        date: new Date().toLocaleString()
+                    }
+                );
+
+                messageStatus.textContent = `Thank you, ${data.from_name}! Your message has been sent successfully.`;
+                messageStatus.className = 'message-status success';
+                messageStatus.style.display = 'block';
+                contactForm.reset();
+
+            } catch (error) {
+                console.error('EmailJS Error:', error);
+                messageStatus.textContent = 'Sorry, there was an error. Please email me directly at chin069267531@gmail.com';
+                messageStatus.className = 'message-status error';
+                messageStatus.style.display = 'block';
+
+            } finally {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.2)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.1)';
+            }
+        });
+    </script>
+</body>
+
+</html>
